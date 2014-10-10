@@ -1,19 +1,18 @@
 ---
 # file: roles/common/tasks/main.yml
 
-- name: samba3 package uninstall
+- name: samba4 package uninstall
   yum: name={{item}} state=absent
   with_items:
     - samba4-libs
-    - samba-winbind
-    - samba-winbind-clients
-    - samba-common
-    - samba-client
 
 - name: packages install
   yum: name={{item}} state=present
   with_items:
     - libselinux-python
+    - samba
+    - openldap-servers
+    - openldap-clients
 
 - name: disable selinux
   selinux: state=disabled
